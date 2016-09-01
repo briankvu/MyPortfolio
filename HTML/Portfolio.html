@@ -1,130 +1,478 @@
 <html>
 	<head>
-		<title> Brian Vu </title>
-		<script type = "text/javascript">
-
-			
-			(function() {
-			
-			function Slideshow( element ) {
-				this.el = document.querySelector( element );
-				this.init();
+	<title> Brian Vu </title>
+		<style type = "text/css">
+			/*Format for the overall background of landing page*/
+			html {
+				height: 100%;
+				width: 100%;
 			}
 			
-			Slideshow.prototype = {
-				init: function() {
-					this.wrapper = this.el.querySelector( ".slider-wrapper" );
-					this.slides = this.el.querySelectorAll( ".slide" );
-					this.previous = this.el.querySelector( ".slider-previous" );
-					this.next = this.el.querySelector( ".slider-next" );
-					this.index = 0;
-					this.total = this.slides.length;
-					this.timer = null;
-					
-					this.action();
-					this.stopStart();	
-				},
-				_slideTo: function( slide ) {
-					var currentSlide = this.slides[slide];
-					currentSlide.style.opacity = 1;
-					
-					for( var i = 0; i < this.slides.length; i++ ) {
-						var slide = this.slides[i];
-						if( slide !== currentSlide ) {
-							slide.style.opacity = 0;
-						}
-					}
-				},
-				action: function() {
-					var self = this;
-					self.timer = setInterval(function() {
-						self.index++;
-						if( self.index == self.slides.length ) {
-							self.index = 0;
-						}
-						self._slideTo( self.index );
-						
-					}, 1000); //set timer for pic transition
-				},
-				stopStart: function() {
-					var self = this;
-					self.el.addEventListener( "mouseover", function() {
-						clearInterval( self.timer );
-						self.timer = null;
-						
-					}, false);
-					self.el.addEventListener( "mouseout", function() {
-						self.action();
-						
-					}, false);
-				}
-				
-				
-			};
+			/*margin for the body of the page*/
+			body {
 			
-			document.addEventListener( "DOMContentLoaded", function() {
-				
-				var slider = new Slideshow( "#main-slider" );
-				
-			});
-			
-			
-		})();
-			
-		
-			
-		
-		</script>
-	<style type = "text/css">
-		body{
-				background-size: 1300px 1000px; 
+				margin: 0 auto;
 			}
 			
-		html,body {
-			margin: 0;
-			padding: 0;
-		}
-		.slider {
-			width: 600px;
-			margin: 2em auto;
+			h1 {
+				font-family: Arial, "Helvetica Neue", Helvetica, sans-seriff;
+			}
+			
+			h2 {
+				font-family: Arial, "Helvetica Neue", Helvetica, sans-seriff;
+				color: white;
+				font-size: 30px;
+			}
+			
+			h3 {
+				font-family: Arial, "Helvetica Neue", Helvetica, sans-seriff;
+			}
+			
+			p {
+				font-family: Arial, "Helvetica Neue", Helvetica, sans-seriff;
+			}
+			
+			/*format for tabs bar*/
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+				overflow: hidden;
+				background-color: none;
+				font-family: Arial, "Helvetica Neue", Helvetica, sans-seriff;
+			}
+			
+			
+			/*format for the upper tab bar*/
+			li.top {
+				float: right;
+				margin-right: 10px;
+				margin-left: 10px;
+				padding: 10px;
+			}
+			/*format for anchor of the links of the tab*/
+			li a {
+				display: block;
+				color: white;
+				text-align: center;
+				padding: 10px;
+				text-decoration: none;
+				width: 100%;
+			}
+			/*change colors when cursor hovers over*/
+			li a:hover {
+				background-color: #111111;
+			}
+			
+			/*format for three boxes and background - FIRST portion of page*/
+			div.anchor{ 
+				margin-right: 0%;
+				margin-left: 0%;
+				width: 100%;
+				height: 100%;
+				background: url(../IMG/snow.png);
+				background-size: 100%;
+				background-repeat: no-repeat;
 				
-		}
+			}
+			/*auto-resize for each of the three boxes*/
+			div.anchor a{ 
+				width: 100%; 
+				height: auto;
+			}
+			/*child div of anchor setting the top margin*/
+			div.subanchor{
+				position: relative;
+				margin-top: 20%;
+			}
 
-		.slider-wrapper {
-			width: 100%;
-			height: 400px;
-			position: relative;
-		}
+			/*about myself box*/
+			#anchor1{
+				display: inline-block;
+				height: 33%;
+				width: 25%;
+				position: relative;
+				/*border: 3px solid #ffffff;*/
+				padding: 0px;
+				background-image: url("../IMG/brain1.png");
+				background-size: 100%;
+				background-repeat: no-repeat;
+			}
+			/*change image when cursor hovers*/
+			#anchor1:hover{
+				background-image:url("../IMG/books.png");
+			}
+			
+			/*projects box*/
+			#anchor2{
+				display: inline-block;
+				height: 33%;
+				width: 25%;
+				position: relative;
+				*/border: 3px solid #ffffff;*/
+				padding: 0px;
+				background-image: url("../IMG/proj1.png");
+				background-size: 100%;
+				background-repeat: no-repeat;
+			}
+			#anchor2:hover{
+				background-image:url("../IMG/proj2.png");
+			}
+			
+			/*resume box*/
+			#anchor3{
+				display: inline-block;
+				height: 33%;
+				width: 25%;
+				position: relative;
+				*/border: 3px solid #ffffff;*/
+				padding: 0px;
+				background-image: url("../IMG/res1.png");
+				background-size: 100%;
+				background-repeat: no-repeat;
+			}
+			#anchor3:hover{
+				background-image:url("../IMG/res2.png");
+			}
+			
+			/*css format not working for some options--horz line format*/
+			#first{
+				position: relative;
+				border: 0 none;
+				color: gray;
+				width: 65%;
+			}
+			#second{
+				position: relative;
+				border: 0 none;
+				color: gray;
+				width: 65%;
+			}
+			#third{
+				position: relative;
+				border: 0 none;
+				color: gray;
+				width: 65%;
+			}
+			#fourth{
+				position: relative;
+				border: 0 none;
+				color: gray;
+				width: 65%;
+			}
+			
+			/*format for profile picture*/
+			#profile{
+				position: relative; 
+				height: auto; 
+				width: 25%;
+				border: 15px solid #000000;
+				padding: 0px;
+			}
+			
+			/*format for profile picture and text for about me section - SECOND portion of page*/
+			div.bio{ 
+				position: relative
+				display: inline-block;
+				
+				font-size: 90%;
+				font-family: Arial, "Helvetica Neue", Helvetica, sans-seriff;
+			}
+			/*additional formatting of the profile picture*/
+			div.bio img{
+				float: left;
+			}
+			
+			/*table properties for projects section*/
+			th{
+				width: 500px;
+				border="5";
+				bgcolor="#111111";
+			}
+			td img{
+				position: relative;
+				width: 500px;;
+				height: 300px;
+				bgcolor="#111111";
+				float: left;
+				border: 15px solid #000000;
+			}
+			
+			/*footer tab format*/
+			div.footer a {
+				display: block;
+				color: black;
+				text-align: center;
+				padding: 10px;
+				text-decoration: none;
+				width: 100%;
+				float: center;
+			}
+			/*option for when cursor hovers over*/
+			div.footer a:hover{
+				background-color: #111111;
+				color: white;
+			}
+			/*format for sequence of tabs for the footer*/
+			li.bottom{
+				float: left;
+				margin-right: 10px;
+				margin-left: 10px;
+				padding: 10px;
+			}
 
-		.slide {
-			float: left;
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			opacity: 0;
-			transition: opacity 3s linear;
-		}
-
-		.slider-wrapper > .slide:first-child {
-			opacity: 1;
-		}
-
-	</style>
+		</style>
 	</head>
-	<body background = "../IMG/nhlbackground.png">
-		<center>
-		<img src="../IMG/NHL title.png"/>
-		<hr color = "yellow">
+	
+		<!--Author: Brian Vu
+			HTML code version 2.0 -->
 		
 		
-		<div class="slider" id="main-slider"><!-- outermost container element -->
-			<div class="slider-wrapper"><!-- innermost wrapper element -->
-			<img src="../IMG/sharks.png" alt="First" class="slide" /><!-- slides -->
-			<img src="../IMG/kings.jpg" alt="Second" class="slide" />
-			<img src="../IMG/predators.jpg" alt="Third" class="slide" />
-		
+		<body>
+			<!--navigate here after clicking home button-->
+			<div id='home'><a name='home'></a></div>
+			<!--parent div for first portion of the page-->
+			<div class="anchor">
+			<!--tabs bar-->
+				<ul>
+				  <li class="top"><a href="#resume">Resume</a></li>
+				  <li class="top"><a href="#projects">Projects</a></li>
+				  <li class="top"><a href="#about">About Myself</a></li>
+				  <li class="top"><a class="active" href="#home">Home</a></li>
+				</ul>
+				<center><h2>Brian Vu</h2></center>
+				<!-- anchors for the three boxes-->
+				<div class="subanchor">
+					<a href="Portfolio.html#about" id="anchor1"></a>
+					<a href="Portfolio.html#projects" id="anchor2"></a>
+					<a href="Portfolio.html#resume" id="anchor3"></a>
+				</div>
 			</div>
+			
+			<!--spacing and navigation for about goes here-->
+			</br>
+			</br>
+			</br>
+			<div id='about'><a name='about'></a></div>
+			
+			<!--First divider-->
+			<center>
+					<hr size="6" color="gray" id="first">
+			</center>
+		
+			<!--About me portion - SECOND portion of page-->
+			<div class="bio">
+				<!--Profile picture-->
+				<img src= "../IMG/profile.jpg" id="profile"/>
+		
+				<center>
+				<h1> The Strive for Excellence. </h1>
+				</center>
+				<br>I wanted to make it better. I wanted to take
+				the old and improve on it.</br>
+				<br>This was ingrained in my mind ever since I was a young kid
+				meticulously picking away at lego blocks and finding new ways to
+				place them to make a better creation.</br>
+				<br>This skill has carried on throughout my life and now has molded into
+				an essential trait that I carry throughout every task I am faced with.
+				</br>
+				</br>
+				<center>
+				<br><h1> Passion. </h1></br>
+				</center>
+				<br>Doing what one loves is an important fuel for creativity
+				and productivity. Being an avid programmer and a member of UCSD's Dragonboat
+				team, the reward of overcoming obstacles together through teammwork is one
+				of the most satisfying feeling one can feel. 
+				</br>
+				<br>This is what motivates me. This
+				is why I love doing what I do.</br>
+				</br>
+			</div>
+			
+		<!--spacing and navigation to projects section goes here-->
+		</br>
+		</br>
+		</br>
+		</br>
+		</br>
+		</br>
+		<div id='projects'><a name='projects'></a></div>
+		<!--second divider-->
+		<center>		
+			<hr size="6" color="gray" id="second">
+		</center>
+		</br>
+		</br>
+		
+		<h1><center> Projects</center></h1>
+		
+		<!--Projects table-->
+		<div class="table">
+		<table>
+			<tbody p style="color:#000080">
+				<tr>
+					<td><a href="Portfolio.html#2048" id="proj1">
+					<img src="../IMG/2048.png">
+					</a>
+					</td>
+					<td><center><h1>Java | GUI </h1>
+					</center>
+					</td>
+				</tr>
+				<tr>
+					<td><a href="Portfolio.html#blackjack" id="proj2">
+					<img src="../IMG/blackjack.png">
+					</a>
+					</td>
+					<td><center><h1>HTML | CSS | Javascript </h1>
+					</center>
+					</td>
+				</tr>
+				<tr>
+					<td><a href="Portfolio.html#home" id="proj3">
+					<img src="../IMG/Portfolio.png">
+					</a>
+					</td>
+					<td><center><h1>HTML | CSS </h1>
+					</center>
+					</td>
+				</tr>
+				<tr>
+					<td><a href="https://invis.io/NC8FMFTT6#RE" id="proj4">
+					<img src="../IMG/RE.PNG">
+					</a>
+					</td>
+					<td><center><h1> Invision | Balsamiq | Photoshop </h1>
+					</center>
+					</td>
+				</tr>
+			</tbody>
+		<table>
+		</div>		
+		
+		<!--2048 page-->
+		</br>
+		</br>
+		<div id='2048'><a name='2048'></a></div>
+		<!--third divider-->
+		<center>		
+			<hr size="6" color="gray" id="third">
+			<h1>2048 Game</h1>
+			<img src="../IMG/2048game.png">
+			<h3>Mini GUI module of the game 2048 with extra features
+				implemented</br> using Java. This game features easy to use controls
+				and a smooth design interface.</br> This variant of the game
+				was created by myself while attending UC San Diego</br> during my
+				early days of programming.</h3>
+		</center>
+		
+		
+		<!--Blackjack page-->
+		</br>
+		</br>
+		<div id='blackjack'><a name='blackjack'></a></div>
+		<center>		
+			<hr size="6" color="gray" id="third">
+			<h1>Blackjack</h1>
+			<img src="../IMG/blackjackgame.PNG" border="10px">
+			<h3>Website-based project done in a course at UCSD. This project</br>
+			combines a large variety of HTML, CSS, and Javascript to create a</br>
+			poker table layout. The game features accurate win/loss</br>
+			conditions based off of the dealer and each hand combination,</br>
+			a random number generator for dealing cards,</br> 
+			and a simple easy-to-use UI.Specific design aspects such</br> 
+			as the background UI were modified to make</br> 
+			the game more pleasing to the eye.</h3>
+		</center>
+		
+		<!--Portfolio page-->
+		</br>
+		</br>
+		<center>		
+			<hr size="6" color="gray" id="third">
+			<h1>My Portfolio</h1>
+			<img src="../IMG/port.PNG" border="10px">
+			<h3>This site is gives you a litle snippet of who I am,</br>
+			what I've done,and everything you need to know about my professional</br>
+			portfolio. This portfolio was not made with the help of any template</br>
+			but instead was made from scratch using HTML and CSS. This was</br>
+			a solo project made by myself.</h3>
+		</center>
+		
+		
+		<!--RE page-->
+		</br>
+		</br>
+		<div id='RE'><a name='RE'></a></div>
+		<center>		
+			<hr size="6" color="gray" id="third">
+			<h1>Rising Edge</h1>
+			<p> Team Rising Edge is a group of 6 dedicated engineering UCSD students</br>
+			set out to design a music website with a goal in mind: improvement.
+			</br></br>
+			Our desire for improvement gave birth to an idea that we can make the music world</br>
+			interact closer with one another. We wanted listeners to be able to connect with</br>
+			their favorite artists through a multitude of ways such as the option of being able</br>
+			to request an artist to perform at a venue. Our three main targets are: normal listeners</br>
+			like me or you, artists/bands, and venues. Together, we aim to connect these three to create</br>
+			the perfect trifecta of communication in the music world.</p>
+			</br>
+			<h3>Making our Brand</h3> 
+			<p> To get the gears rolling, our first objective was to create a logo to brand our</br>
+			website. Each person in our team produced a sketched rough draft of the logo.</br>
+			Voting on the three that we liked, we set out to create a more refined</br>
+			version of the three. At last, we found </br>
+			finalized our logo design and are ready to tackle the next step.</p>
+			<img src="../IMG/logos.png" border="10px">
+			<h3>Analyzing our Competitors</h3>
+			<p>In order to fully understand how to market our website and to rise to the top,</br>
+			we needed to do some competitive analysis of our main competitors in which we</br>
+			narrowed down and mapped out their key features and flaws:</p>
+			<img src="../IMG/needfinding.png" border="10px">
+			<h3>Prototyping</h3>
+			<p>After mapping out how our website would ultimately function, we confirmed our</br>
+			website's goal and set out to planning its content and layout. Using Balsamiq, a prototyping</br>
+			tool, what each tab on our website would look like. For me, I worked on the Trending Page which</br>
+			was devoted to seeking out upstart artists and putting them in the spotlight.</p>
+			<img src="../IMG/prototype.PNG" border="10px">
+			<h3>The Finished High Fidelity Website</h3>
+			<p>At last as we reached our final stages of discussing and designing</br>
+			the content strategy of our webpage, we began to garnish the website aesthetically.</br>
+			Using photoshop, we were able to each create a page for the website and mount it on Invision</br>
+			to fully see how our website would operate. After reviewing everything and fixing some bugs</br>
+			here and there, we have our finished high fidelity website.</p>
+			<img src="../IMG/Trending.png">
+		
+		</center>
+		
+		</br>
+		</br>
+		<div id='resume'><a name='resume'></a></div>
+		<!--fourth divider-->
+		<center>		
+			<hr size="6" color="gray" id="fourth">
+		</center>
+		
+		<img src="../IMG/ResumePic.jpg" width="1100px">
+		
+		
+		</br>
+		</br>
+		<center>		
+			<hr size="6" color="gray" id="fourth">
+		</center>
+		
+		<!--footer for the page-->
+		<div class="footer">
+			<ul>
+			  <li class="bottom"><a class="active" href="#home">Home</a></li>
+			  <li class="bottom"><a href="../IMG/Resume.pdf">Resume PDF</a></li>
+			  <li class="bottom"><a href="https://www.linkedin.com/in/brian-vu-71a626120?trk=nav_responsive_tab_profile">LinkedIn</a></li>
+			  <li class="bottom"><a href="https://github.com/briankvu">Github</a></li>
+			</ul>
 		</div>
-	</center>
 	</body>
 </html>
+
+
